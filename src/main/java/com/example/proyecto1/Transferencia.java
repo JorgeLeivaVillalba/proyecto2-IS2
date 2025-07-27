@@ -5,7 +5,7 @@ public class Transferencia {
     private int monto;
     private String banco_origen;
     private String banco_destino;
-    private long timestamp;
+    private String timestamp;
     private String idTransaccion;
 
     public String getCuenta() {
@@ -32,10 +32,10 @@ public class Transferencia {
     public void setBanco_destino(String banco_destino) {
         this.banco_destino = banco_destino;
     }
-    public long getTimestamp() {
+    public String getTimestamp() {
         return timestamp;
     }
-    public void setTimestamp(long timestamp) {
+    public void setTimestamp(String timestamp) {
         this.timestamp = timestamp;
     }
     public String getIdTransaccion() {

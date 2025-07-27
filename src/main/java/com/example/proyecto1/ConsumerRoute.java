@@ -9,12 +9,12 @@ public class ConsumerRoute extends RouteBuilder {
     @Override
     public void configure() {
         from("activemq:queue:Leiva-ITAU-IN")
-            .log("ITAU proceso la transferencia: ${body}");
+            .bean(ITAUConsumer.class, "procesar");
 
         from("activemq:queue:Leiva-ATLAS-IN")
-            .log("ATLAS proceso la transferencia: ${body}");
+            .bean(ATLASConsumer.class, "procesar");
 
         from("activemq:queue:Leiva-FAMILIAR-IN")
-            .log("FAMILIAR proceso la transferencia: ${body}");
+            .bean(FAMILIARConsumer.class, "procesar");
     }
 }
