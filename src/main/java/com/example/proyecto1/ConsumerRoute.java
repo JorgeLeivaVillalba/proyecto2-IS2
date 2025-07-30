@@ -3,18 +3,23 @@ package com.example.proyecto1;
 import org.apache.camel.builder.RouteBuilder;
 import org.springframework.stereotype.Component;
 
+//Ruta del consumidor
+
 @Component
 public class ConsumerRoute extends RouteBuilder {
 
     @Override
     public void configure() {
         from("activemq:queue:Leiva-ITAU-IN")
-            .bean(ITAUConsumer.class, "procesar");
+            .multicast() // Multicast para enviar al bean MessageStoreBean
+            .to("bean:ITAUConsumer?method=procesar", "bean:messageStoreBean?method=store");
 
         from("activemq:queue:Leiva-ATLAS-IN")
-            .bean(ATLASConsumer.class, "procesar");
+            .multicast()
+            .to("bean:ATLASConsumer?method=procesar", "bean:messageStoreBean?method=store");
 
         from("activemq:queue:Leiva-FAMILIAR-IN")
-            .bean(FAMILIARConsumer.class, "procesar");
+            .multicast()
+            .to("bean:FAMILIARConsumer?method=procesar", "bean:messageStoreBean?method=store");
     }
 }

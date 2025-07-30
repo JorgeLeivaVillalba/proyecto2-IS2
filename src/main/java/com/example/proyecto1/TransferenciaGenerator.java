@@ -15,7 +15,7 @@ public class TransferenciaGenerator {
 
         Transferencia transferencia = new Transferencia();
         transferencia.setCuenta(String.valueOf(1000 + random.nextInt(4001)));
-        // 20% de probabilidad de monto > 20 millones
+        // 20% de probabilidad de monto mayor a 20 millones
         if (random.nextDouble() < 0.2) {
             // monto entre 20,000,001 y 25,000,000
             transferencia.setMonto(20000001 + random.nextInt(5000000));
@@ -25,10 +25,9 @@ public class TransferenciaGenerator {
         }
         transferencia.setBanco_origen(bancoOrigen);
         transferencia.setBanco_destino(bancoDestino);
-        // Formatear timestamp como yyyy-MM-dd HH:mm:ss
         java.time.LocalDateTime now = java.time.LocalDateTime.now();
-        java.time.format.DateTimeFormatter formatter = java.time.format.DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        transferencia.setTimestamp(now.format(formatter)); // timestamp legible
+        java.time.format.DateTimeFormatter formatter = java.time.format.DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss"); // Formatear timestamp
+        transferencia.setTimestamp(now.format(formatter)); // timestamp formateado
         transferencia.setIdTransaccion(java.util.UUID.randomUUID().toString()); // ID de transacción
 
         return transferencia;
