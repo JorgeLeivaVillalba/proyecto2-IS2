@@ -5,7 +5,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-//Este bean guarda los mensajes en un archivo log.txt
+//Este bean es un MessageStore que guarda los mensajes en un archivo log.txt
 
 @Component
 public class MessageStoreBean {
